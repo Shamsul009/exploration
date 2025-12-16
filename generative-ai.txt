@@ -1,0 +1,59 @@
+What is Generative AI?
+    Generative AI is a type of artificial intelligence that can create new content, 
+    rather than only analyze or predict existing data.
+
+    Generative AI learns patterns from data and then generates new,
+    realistic data that did not exist before.
+
+    It works by:
+        1.Learning the probability distribution of the data
+        2.Generating new samples from that learned distribution
+
+    Examples of generated content include text, images, audio, video, and code.
+
+Why is Generative AI different from Deep Learning?
+    Generative AI is a subset of Deep Learning, but with a specific goal.
+
+    Deep Learning (general) focuses on:
+        1.Prediction
+        2.Classification
+        3.Detection(e.g., spam detection, image classification, price prediction)
+
+    Generative AI focuses on:
+        Creating new, realistic data (e.g., writing text, generating images, composing music)
+
+So, all Generative AI models use deep learning, but not all deep learning models are generative.
+
+What is a Probability Distribution?
+    A probability distribution tells us how likely each possible outcome is.
+    In simple terms, it answers the question: “Out of all possible options, how likely is each one?”
+
+How Probability Distribution affects Generative AI and Deep Learning ?
+
+Example
+    Sentence: I love eating ___
+    From training data, the model learns the probability of different next words:
+        Next Word	    Probability
+        pizza	           0.40
+        rice	           0.25
+        burger	           0.20
+        ice-cream	       0.10
+        car	              0.0001
+
+    This table represents a probability distribution over possible next words.
+
+
+The model does not always choose “pizza”
+Instead, it samples from the probability distribution
+Words with higher probability are more likely, but lower-probability words are still possible
+This is why: Responses feel natural , Outputs are not always identical
+
+Key Difference in How Probability is Used : 
+    
+    In Traditional Deep Learning
+    The model often selects the single most likely output
+    Example: choosing only "pizza" (classification)
+
+    In Generative AI
+    The model samples from the full probability distribution
+    This allows variation, creativity, and realism
