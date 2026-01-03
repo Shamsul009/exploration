@@ -1,0 +1,33 @@
+How Laravel Scheduler Works with OS Cron
+1️⃣ OS Cron is the trigger
+Server’s cron (Linux, Unix, etc.) executes php artisan schedule:run every minute. It doesn’t care what Laravel project does—it just calls PHP.
+
+2️⃣ Laravel Kernel is the manager
+ When schedule:run is triggered, Laravel boots the Console Kernel (app/Console/Kernel.php). The Kernel knows all registered commands and their schedules.
+
+3️⃣ Commands are the workers
+ Commands contain the actual logic. The Kernel checks which commands should run at the current time and executes them.
+
+💡 Example:
+If a command is scheduled with everyTwoHours() and the project is deployed at 6:45, it won’t run immediately. The next execution will be at 8:00, because Laravel runs commands at fixed time intervals, not relative to deployment.
+
+4️⃣ When working with Laravel scheduled commands, these two methods withoutOverlapping() , runInBackground() are critical to understand:
+
+⚡ withoutOverlapping()
+  Prevents a scheduled command from running again if the previous execution is still in progress.
+  Laravel uses a cache lock (Redis, database, etc.) to ensure only one instance runs at a time.
+👉 Useful when:
+  1.Commands are long-running
+  2.Duplicate execution can cause data inconsistency
+  3.Same records are being updated
+
+
+⚡ runInBackground()
+  Runs the command asynchronously in a separate process, so the scheduler is not blocked.
+  Other scheduled commands can continue running without waiting.
+👉 Useful when:
+  1.Multiple commands run at the same minute
+  2.Commands are heavy or time-consuming
+
+
+
