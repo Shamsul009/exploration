@@ -1,0 +1,11 @@
+The main function in Go runs inside a goroutine managed by the Go runtime.
+
+When tasks are executed one after another (sequentially), the total execution time becomes high because each task blocks the next one.
+
+By using goroutines, we can run tasks concurrently. The Go runtime schedules these goroutines onto OS threads, which helps reduce total execution time when tasks are independent.
+
+However, when a goroutine is started from main, the main function does not automatically wait for it to finish. If main returns, the program exits and all other goroutines are terminated.
+
+To make main wait for goroutines to finish, we use synchronization primitives such as sync.WaitGroup. This is better than using time.Sleep, which is unreliable and naive.
+
+Goroutines cannot directly return values to the caller like normal function calls. To receive results from goroutines, we use channels, which allow safe communication between goroutines.
