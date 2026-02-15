@@ -1,0 +1,27 @@
+func double(s *[]int) {
+    for i := range *s {
+        (*s)[i] *= 2
+    }
+}
+
+func main() {
+	nums := []int{1, 2, 3}
+	double(&nums)
+	fmt.Println(nums) 
+}
+Output : [2,4,6]
+
+A slice is NOT the array itself.
+A slice is a small struct that points to an underlying array.
+The slice header is copied
+The array it points to is shared
+
+func add(s []int) {
+    s = append(s, 100) // may create new array
+}
+
+nums := []int{1,2,3}
+add(nums)
+fmt.Println(nums) 
+Output : [1 2 3]
+Because append might allocate a new array, and nums still points to the old one.
